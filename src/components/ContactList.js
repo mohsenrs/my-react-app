@@ -1,7 +1,12 @@
-import React from 'react';
+import React from 'react'
+import ContactCard from './ContactCard'
 
 function ContactList() {
-  return <div>ContactList</div>;
+  return (
+    <>
+      <ContactCard />
+    </>
+  )
 }
 
-export default ContactList;
+export default ContactList
