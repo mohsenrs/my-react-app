@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import ContactContext from './../context/ContactContext'
 import user from '../images/user.png'
 
-function ContactCard() {
+function ContactCard(props) {
   const contacts = useContext(ContactContext)
 
   return (
@@ -17,7 +17,8 @@ function ContactCard() {
             </div>
             <i
               className='trash alternate outline icon'
-              style={{ color: 'red' }}
+              style={{ color: 'red', cursor: 'pointer' }}
+              onClick={() => props.clickHandler(contact.id)}
             ></i>
           </div>
         )

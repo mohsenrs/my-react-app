@@ -27,32 +27,18 @@ import { useState } from 'react'
 function AddContact(props) {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
-  // const [userInput, setUserInput] = useState({
-  //   name: '',
-  //   email: '',
-  // })
 
   const onNameChangeHandler = (e) => {
-    // setUserInput((prevState) => {
-    //   return { ...prevState, name: e.target.value }
-    // })
     setName(e.target.value)
   }
 
   const onEmailChangeHandler = (e) => {
-    // setUserInput((prevState) => {
-    //   return { ...prevState, email: e.target.value }
-    // })
     setEmail(e.target.value)
   }
 
   const addContactHandler = (e) => {
     e.preventDefault()
 
-    // if (userInput.name === '' || userInput.email === '') {
-    //   alert('fill the inputs')
-    //   return
-    // }
     if (name === '' || email === '') {
       alert('fill the inputs')
       return
@@ -64,13 +50,8 @@ function AddContact(props) {
       id: Math.random().toFixed(2).toString() * 100,
     }
 
-    // props.addContactHandler(userInput)
     props.addContactHandler(contact)
 
-    // setUserInput({
-    //   name: '',
-    //   email: '',
-    // })
     setName('')
     setEmail('')
   }

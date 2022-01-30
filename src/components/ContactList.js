@@ -4,7 +4,7 @@ import ContactCard from './ContactCard'
 function ContactList() {
   return (
     <>
-      <ContactCard />
+      <ContactCard  />
     </>
   )
 }
