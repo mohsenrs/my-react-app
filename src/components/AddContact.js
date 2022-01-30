@@ -23,11 +23,13 @@
 
 import React from 'react'
 import { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 
 function AddContact(props) {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
+  const history = useHistory()
 
   const onNameChangeHandler = (e) => {
     setName(e.target.value)
@@ -55,6 +57,8 @@ function AddContact(props) {
 
     setName('')
     setEmail('')
+
+    history.push('/')
   }
 
   return (
@@ -67,9 +71,10 @@ function AddContact(props) {
         }}
       >
         <h2>Add Contact</h2>
-        <button>
-          <Link to='/'>Go To List</Link>
-        </button>
+
+        <Link className='ui button blue' to='/'>
+          Go To List
+        </Link>
       </div>
       <form className='ui form' onSubmit={addContactHandler}>
         <div className='field'>

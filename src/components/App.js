@@ -2,7 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import ContactContext from './../context/ContactContext'
 import './App.css'
-import { Header, ContactCard, ContactList, AddContact } from './index'
+import {
+  Header,
+  ContactCard,
+  ContactList,
+  AddContact,
+  ContactDetail,
+} from './index'
 
 function App() {
   const LOCAL_STORAGE_KEY = 'contacts'
@@ -43,6 +49,9 @@ function App() {
         </Route>
         <Route path='/add'>
           <AddContact addContactHandler={addContactHandler} />
+        </Route>
+        <Route path='/contact/:contactId'>
+          <ContactDetail />
         </Route>
       </Switch>
     </div>

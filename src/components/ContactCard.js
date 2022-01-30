@@ -16,17 +16,19 @@ function ContactCard(props) {
           margin: '1rem auto',
         }}
       >
-        <button>
-          <Link to='/add'>Add Contact</Link>
-        </button>
+        <Link className='ui button blue' to='/add'>
+          Add Contact
+        </Link>
       </div>
       {contacts?.map((contact) => {
         return (
           <div className='item' key={contact.id}>
             <img className='ui avatar image' src={user} alt='user' />
             <div className='content'>
-              <div className='header'>{contact.name}</div>
-              <div>{contact.email}</div>
+              <Link to={`/contact/${contact.id}`}>
+                <div className='header'>{contact.name}</div>
+                <div>{contact.email}</div>
+              </Link>
             </div>
             <i
               className='trash alternate outline icon'
