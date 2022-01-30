@@ -23,6 +23,7 @@
 
 import React from 'react'
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 function AddContact(props) {
   const [name, setName] = useState('')
@@ -58,7 +59,18 @@ function AddContact(props) {
 
   return (
     <div className='ui main'>
-      <h2>Add Contact</h2>
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+        }}
+      >
+        <h2>Add Contact</h2>
+        <button>
+          <Link to='/'>Go To List</Link>
+        </button>
+      </div>
       <form className='ui form' onSubmit={addContactHandler}>
         <div className='field'>
           <label>Name</label>
