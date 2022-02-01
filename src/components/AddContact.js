@@ -42,7 +42,7 @@ function AddContact(props) {
   const addContactHandler = (e) => {
     e.preventDefault()
 
-    if (name === '' || email === '') {
+    if (name.trim() === '' || email.trim() === '') {
       alert('fill the inputs')
       return
     }
