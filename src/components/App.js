@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import ContactContext from './../context/ContactContext'
+import api from '../api/contacts'
 import './App.css'
 import {
   Header,
@@ -14,23 +15,36 @@ function App() {
   const LOCAL_STORAGE_KEY = 'contacts'
   const [contacts, setContacts] = useState([])
 
-  const addContactHandler = (contact) => {
-    console.log(contact)
-    setContacts([...contacts, contact])
+  // Create data
+  const addContactHandler = async (contact) => {
+    const response = await api.post('contacts', contact)
+    console.log(response.data)
+    setContacts([...contacts, response.data])
   }
 
+  //retrieve contacts
+  const retrieveContact = async () => {
+    try {
+      const response = await api.get('/contacts')
+      return response.data
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  // Read data
   useEffect(() => {
-    const retrieveContactsData = JSON.parse(
-      localStorage.getItem(LOCAL_STORAGE_KEY)
-    )
-    if (retrieveContactsData) setContacts(retrieveContactsData)
+    const getAllContacts = async () => {
+      const allContacts = await retrieveContact()
+      if (allContacts) setContacts(allContacts)
+    }
+
+    getAllContacts()
   }, [])
 
-  useEffect(() => {
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(contacts))
-  }, [contacts])
-
-  const removeContactHandler = (id) => {
+  // delete contact
+  const removeContactHandler = async (id) => {
+    await api.delete(`contacts/${id}`)
     const newContactList = contacts.filter((contact) => {
       return contact.id !== id
     })
@@ -44,7 +58,7 @@ function App() {
       <Switch>
         <Route path='/' exact>
           <ContactContext.Provider value={contacts}>
-            <ContactCard clickHandler={removeContactHandler} />
+            <ContactList clickHandler={removeContactHandler} />
           </ContactContext.Provider>
         </Route>
         <Route path='/add'>
