@@ -5,14 +5,12 @@ import api from '../api/contacts'
 import './App.css'
 import {
   Header,
-  ContactCard,
   ContactList,
   AddContact,
   ContactDetail,
 } from './index'
 
 function App() {
-  const LOCAL_STORAGE_KEY = 'contacts'
   const [contacts, setContacts] = useState([])
 
   // Create data
